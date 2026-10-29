@@ -4,7 +4,6 @@ import { AnalysisData, FileMetadata, ChartConfig, ChatMessage } from '@/types';
 interface AnalysisState {
   activeFile: FileMetadata | null;
   activeAnalysis: AnalysisData | null;
-  history: AnalysisData[];
   apiKey: string;
   
   // 4 Distinct Outputs
@@ -21,7 +20,6 @@ interface AnalysisState {
   // Actions
   setActiveFile: (file: FileMetadata | null) => void;
   setActiveAnalysis: (analysis: AnalysisData | null) => void;
-  setHistory: (history: AnalysisData[]) => void;
   setApiKey: (key: string) => void;
   
   setOutput1: (content: string | null, score?: number) => void;
@@ -40,7 +38,6 @@ interface AnalysisState {
 export const useAnalysisStore = create<AnalysisState>((set) => ({
   activeFile: null,
   activeAnalysis: null,
-  history: [],
   apiKey: '',
   
   output1: null,
@@ -83,7 +80,6 @@ export const useAnalysisStore = create<AnalysisState>((set) => ({
       set({ activeAnalysis: null });
     }
   },
-  setHistory: (history) => set({ history }),
   setApiKey: (key) => set({ apiKey: key }),
 
   setOutput1: (content, score) => set((state) => ({ 

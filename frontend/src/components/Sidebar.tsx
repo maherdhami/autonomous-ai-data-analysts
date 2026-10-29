@@ -8,7 +8,6 @@ import {
   UploadCloud, 
   BarChart3, 
   MessageSquareCode, 
-  History, 
   Settings, 
   Zap 
 } from 'lucide-react';
@@ -18,7 +17,6 @@ const navigation = [
   { name: 'Data Upload', href: '/upload', icon: UploadCloud },
   { name: 'Analysis Results', href: '/analysis', icon: BarChart3 },
   { name: 'AI Chat Analyst', href: '/chat', icon: MessageSquareCode },
-  { name: 'Analysis History', href: '/history', icon: History },
   { name: 'Settings', href: '/settings', icon: Settings },
 ];
 

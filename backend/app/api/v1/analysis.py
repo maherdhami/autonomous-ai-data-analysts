@@ -62,12 +62,6 @@ async def remove_dataset():
     return ResponseModel(success=True, message="Dataset cleared successfully", data=True)
 
 
-
-@router.get("/history", response_model=ResponseModel[List[AnalysisResponse]])
-async def get_analysis_history():
-    """Stateless history endpoint: no analyses are saved in database or memory."""
-    return ResponseModel(success=True, message="History is stateless", data=[])
-
 @router.post("/quality-assessment", response_model=ResponseModel[QualityAssessmentResponse])
 async def run_quality_assessment(req: AnalysisRunRequest):
     """Output 1: Data Overview & Data Quality Assessment."""

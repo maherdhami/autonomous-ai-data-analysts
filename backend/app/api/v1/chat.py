@@ -40,8 +40,3 @@ async def chat_with_analyst(req: ChatRequest):
         message="AI response generated successfully",
         data=ChatResponse(session_id="active", message=msg)
     )
-
-@router.get("/chat/history", response_model=ResponseModel[list])
-async def get_chat_history():
-    """Stateless chat history endpoint."""
-    return ResponseModel(success=True, message="Chat history is stateless", data=[])

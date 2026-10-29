@@ -45,13 +45,13 @@ export default function SettingsPage() {
                 <p className="font-semibold text-slate-200 mt-0.5">Groq Llama-3.1 8B Instant</p>
               </div>
               <div>
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Dataset Storage</label>
-                <p className="font-semibold text-slate-200 mt-0.5">In-Memory Per Session</p>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Architecture</label>
+                <p className="font-semibold text-slate-200 mt-0.5">Stateless API Execution</p>
               </div>
               <div>
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Session Memory</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Data Persistence</label>
                 <span className="inline-block mt-0.5 px-2.5 py-0.5 text-[10px] font-bold bg-emerald-500/10 text-emerald-300 rounded-full border border-emerald-500/20">
-                  Active (Isolated)
+                  Zero History / Zero Memory
                 </span>
               </div>
             </div>

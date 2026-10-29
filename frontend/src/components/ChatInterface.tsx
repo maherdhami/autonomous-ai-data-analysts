@@ -7,7 +7,7 @@ import { useAnalysisStore } from '@/store/useAnalysisStore';
 import { ChatMessage } from '@/types';
 
 export function ChatInterface() {
-  const { activeFile, apiKey, messages, addMessage, clearMessages, sessionId } = useAnalysisStore();
+  const { activeFile, apiKey, messages, addMessage, sessionId } = useAnalysisStore();
   const [input, setInput] = useState('');
   const [mode, setMode] = useState<'strategic' | 'code'>('code');
   const [isLoading, setIsLoading] = useState(false);
@@ -81,7 +81,7 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Header Actions: Mode Selector & Clear Memory */}
+        {/* Header Actions: Mode Selector */}
         <div className="flex items-center gap-3">
           <div className="flex bg-slate-950/60 p-1 rounded-xl border border-slate-900 text-[11px] font-semibold gap-1">
             <button
@@ -103,14 +103,6 @@ export function ChatInterface() {
               Option 2: Strategic Q&A
             </button>
           </div>
-
-          <button
-            onClick={clearMessages}
-            title="Clear Chat Memory"
-            className="p-2 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 border border-slate-900 hover:border-rose-500/20 rounded-xl transition-all text-xs flex items-center gap-1.5"
-          >
-            <span>🗑️ Clear Memory</span>
-          </button>
         </div>
       </div>
 
