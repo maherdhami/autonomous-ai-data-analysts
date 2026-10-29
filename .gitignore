@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+venv/
+env/
+.env
+.env.local
+.env*.local
+
+# Next.js & Frontend Build Outputs
+frontend/.next/
+frontend/out/
+frontend/build/
+.next/
+out/
+build/
+dist/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/venv/
+backend/__pycache__/
+app/__pycache__/
+
+# Firebase & Service Account Keys
+*service-account*.json
+service-account.json
+backend/service-account.json
+*.pem
+*.key
+
+# Uploads & Temp Files
+backend/uploads/*
+!backend/uploads/.gitkeep
+uploads/*
+!uploads/.gitkeep
+*.log
+.DS_Store
+Thumbs.db
