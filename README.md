@@ -1,116 +1,157 @@
-# Autonomous AI Data Analyst - Next.js + FastAPI + Firebase + AWS + Docker
+# ⚡ Autonomous AI Data Analyst Studio
 
-Enterprise-grade, scalable full-stack application architecture migrated from Streamlit.
+An enterprise-grade, high-performance, and **stateless** AI Data Analyst platform built with **Next.js 14**, **FastAPI (Python 3.12)**, **Groq Llama 3.1 8B**, and **Plotly.js**.
+
+Transform raw business datasets (CSV, Excel) into automated data quality audits, deep statistical BI insights, dynamic interactive visualizations, and C-suite strategic roadmaps in seconds.
 
 ---
 
-## 🏛️ Modern Target Architecture
+## 🌟 Key Features
+
+### 1. 📌 4-Layer Autonomous Analysis Pipeline
+* **Output 1 — Data Overview & Quality Assessment**: Automated structural hygiene checks, missing value ratios, duplicate detection, and health scoring (0–100).
+* **Output 2 — Business Analysis & Profiling**: Key statistical distributions, revenue drivers, churn factors, and business metric interpretations.
+* **Output 3 — Interactive Visualizations**: Dynamic high-fidelity Plotly charts synthesized automatically from numerical and categorical fields.
+* **Output 4 — Executive Strategy Roadmap**: Actionable executive recommendations, operational initiatives, and strategic growth tactics.
+
+### 2. 💬 AI Chat Analyst (Dual Mode)
+* **Option 1: Code Q&A**: Generates and executes Python code against the active dataframe, returning exact calculation outputs.
+* **Option 2: Strategic Q&A**: Provides contextual business reasoning and executive commentary based on dataset characteristics.
+
+### 3. 🛡️ Stateless & Privacy-First Architecture
+* **Zero Persistence**: No database (no Firestore, SQL, or MongoDB) storing company datasets.
+* **In-Memory Streaming**: Files are processed in memory per session — zero files saved to disk.
+* **Zero History Retention**: Once the browser session closes, no stale historical data remains.
+
+---
+
+## 🏛️ System Architecture
 
 ```
 User (Browser)
       │
       ▼
-Next.js 15 Frontend (App Router, TypeScript, Tailwind CSS, ShadCN UI)
+Next.js 14 Frontend (App Router, TypeScript, Tailwind CSS, Zustand, Plotly.js)
+      │  [Hosted on Vercel]
       │
-      ▼ (HTTP / REST API with Firebase JWT Bearer Tokens)
-FastAPI Backend (Python 3.12 Async, Pydantic v2)
-  ├── Auth & JWT Verification Middleware
-  ├── Multi-Provider LLM Service (Groq Llama 3.1 & OpenAI)
-  ├── Pandas Data Engineering Engine
-  └── Plotly Chart Generator
+      ▼ (REST API / CORS Enabled)
+FastAPI Backend (Python 3.12 Async, Pydantic v2, Pandas, Plotly)
+      │  [Hosted on Render]
       │
-      ├──► Firebase Firestore (users, analyses, chat_sessions, messages, uploaded_files)
-      ├──► AWS S3 Bucket (Dataset Storage)
-      └──► Groq / OpenAI LLM APIs
+      ├──► In-Memory Session Engine (BytesIO / DataFrame)
+      └──► Groq Cloud (Llama 3.1 8B Instant) / OpenAI API
 ```
 
 ---
 
 ## 📁 Repository Directory Structure
 
-```
+```text
 .
-├── frontend/                   # Next.js 15 App Router Frontend
+├── backend/
+│   ├── app/
+│   │   ├── api/v1/             # Modular API endpoints (upload, analysis, summary, viz, chat)
+│   │   ├── core/               # App configuration, logging, settings
+│   │   ├── middleware/         # Open CORS middleware (Vercel-ready)
+│   │   ├── schemas/            # Strict Pydantic v2 validation models
+│   │   ├── services/           # LLM engine, chat, business analysis, visualization services
+│   │   ├── utils/              # Data processing & Plotly chart generators
+│   │   └── main.py             # FastAPI entrypoint
+│   ├── main.py                 # Direct re-export entrypoint for Render (uvicorn main:app)
+│   ├── Dockerfile              # Production container build
+│   └── requirements.txt        # Backend Python dependencies
+├── frontend/
 │   ├── src/
-│   │   ├── app/                # Pages (Dashboard, Chat, Upload, Analysis, History, Settings, Auth)
-│   │   ├── components/         # Reusable UI components (Sidebar, Navbar, PlotlyChart, Chat, etc.)
-│   │   ├── lib/                # Firebase client, Axios API client
-│   │   ├── store/              # Zustand state management
-│   │   └── types/              # TypeScript definitions
-│   ├── Dockerfile              # Multi-stage production container
+│   │   ├── app/                # App Router pages (Dashboard, Upload, Analysis, Chat, Settings)
+│   │   ├── components/         # High-fidelity UI (Navbar, Sidebar, PlotlyChart, ChatInterface)
+│   │   ├── lib/                # Axios API client configured with dynamic base URL
+│   │   ├── store/              # Zustand state store
+│   │   └── types/              # TypeScript interfaces
 │   ├── package.json
 │   ├── tailwind.config.ts
 │   └── tsconfig.json
-├── backend/                    # FastAPI Async Python 3.12 Backend
-│   ├── app/
-│   │   ├── api/v1/             # Router endpoints (auth, analysis, chat, insights, health)
-│   │   ├── core/               # Config, Firebase Admin init, Security, Logging
-│   │   ├── database/           # Firestore Repository Client
-│   │   ├── middleware/         # CORS, Rate Limiting, Auth verification
-│   │   ├── models/             # Data models & Firestore schemas
-│   │   ├── schemas/            # Pydantic v2 schemas
-│   │   ├── services/           # LLM, Chat, Analysis, Insights, Recommendations
-│   │   ├── utils/              # Data processing & Plotly chart generators
-│   │   └── main.py             # FastAPI entrypoint
-│   ├── Dockerfile              # Multi-stage production container
-│   └── requirements.txt
-├── infrastructure/             # Infrastructure & Deployment Assets
-│   ├── terraform/              # AWS ECR, VPC, ECS Fargate, S3 Terraform
-│   └── aws-ecs-task-def.json   # AWS Task definition example
-├── docs/                       # API Specs & Production Deployment Guides
-│   ├── API_DOCUMENTATION.md
-│   └── PRODUCTION_DEPLOYMENT_GUIDE.md
-├── .github/workflows/
-│   └── deploy.yml              # GitHub Actions CI/CD Pipeline
-├── docker-compose.yml          # Full-stack local orchestration
-├── .env.example                # Environment variables template
+├── docs/                       # Technical architecture & deployment masterclasses
+├── render.yaml                 # Render infrastructure-as-code Blueprint
+├── vercel.json                 # Vercel deployment configuration
+├── docker-compose.yml          # Containerized local execution
+├── .env.example                # Template environment variables
 └── README.md
 ```
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 Live Cloud Deployment
 
-### Option 1: Docker Compose (Recommended)
+### 1. Backend on Render
 
-Run the full stack with containers:
+1. Create a **New Web Service** connected to this repository.
+2. Configure settings:
+   * **Root Directory**: `backend` (or leave root with `uvicorn main:app`)
+   * **Build Command**: `pip install -r requirements.txt`
+   * **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+3. Environment Variables:
+   * `PYTHON_VERSION`: `3.12.0`
+   * `ENVIRONMENT`: `production`
+   * `GROQ_API_KEY`: `your_groq_api_key_here`
 
-```bash
-# 1. Start containers
-docker-compose up --build -d
+### 2. Frontend on Vercel
 
-# 2. Access applications
-# Frontend UI: http://localhost:3000
-# FastAPI Swagger Docs: http://localhost:8000/docs
-# Backend Health API: http://localhost:8000/api/v1/health
-```
+1. Import the repository in Vercel.
+2. Configure settings:
+   * **Framework Preset**: `Next.js`
+   * **Root Directory**: `frontend`
+3. Environment Variable:
+   * `NEXT_PUBLIC_API_BASE_URL`: `https://your-render-backend.onrender.com/api/v1`
+4. Click **Deploy**.
 
-### Option 2: Running Locally for Development
+---
 
-#### Backend (FastAPI):
+## 💻 Local Development Setup
+
+### Prerequisites
+* **Python**: 3.12+
+* **Node.js**: 18+ or 20+
+* **Groq API Key**: [Get a free key at console.groq.com](https://console.groq.com)
+
+### 1. Backend Setup
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Windows:
+venv\Scripts\activate
+# macOS/Linux:
+source venv/bin/activate
+
 pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000
 ```
+FastAPI Swagger documentation will be available at `http://localhost:8000/docs`.
 
-#### Frontend (Next.js):
+### 2. Frontend Setup
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
+Open `http://localhost:3000` to launch the application.
+
+### 3. Docker Compose (Full Stack)
+```bash
+docker-compose up --build
+```
 
 ---
 
-## 📦 Key Deliverables Completed
+## 🔑 Environment Variables
 
-1. **Complete Folder Structure**: Modular separation into `frontend/`, `backend/`, `infrastructure/`, `docs/`, `.github/`.
-2. **Next.js 15 Frontend**: TypeScript, App Router, Tailwind CSS, Zustand, React Query, Plotly integration, Auth Guard.
-3. **FastAPI Backend**: Python 3.12, Pydantic v2, Async endpoints, rate limiting, logging, JWT authentication.
-4. **Firebase Firestore & Auth**: Firebase Admin SDK integration with fallback mock store for offline testing.
-5. **Multi-Stage Docker Setup**: Optimized `Dockerfile` for frontend and backend, plus `docker-compose.yml`.
-6. **AWS Infrastructure & CI/CD**: Terraform configuration for AWS ECS Fargate, ECR, S3, CloudFront, and GitHub Actions workflow.
-7. **Comprehensive Documentation**: OpenAPI spec, Markdown API docs, and step-by-step deployment guide.
+| Variable | Scope | Description |
+|---|---|---|
+| `GROQ_API_KEY` | Backend | Groq API Key for Llama-3.1-8b-instant inference |
+| `OPENAI_API_KEY` | Backend | Optional fallback OpenAI key |
+| `ENVIRONMENT` | Backend | `production` or `development` |
+| `NEXT_PUBLIC_API_BASE_URL` | Frontend | URL of the backend API (e.g. `http://localhost:8000/api/v1`) |
+
+---
+
+## 📄 License
+MIT License. Built for enterprise data intelligence and modern AI agent workflows.
