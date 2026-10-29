@@ -1,157 +1,52 @@
 # ⚡ Autonomous AI Data Analyst Studio
 
-An enterprise-grade, high-performance, and **stateless** AI Data Analyst platform built with **Next.js 14**, **FastAPI (Python 3.12)**, **Groq Llama 3.1 8B**, and **Plotly.js**.
+An AI-powered data analytics platform that transforms raw datasets into meaningful insights, interactive visualizations, and actionable business recommendations.
 
-Transform raw business datasets (CSV, Excel) into automated data quality audits, deep statistical BI insights, dynamic interactive visualizations, and C-suite strategic roadmaps in seconds.
+🚀 **Live Demo:** https://autonomous-ai-data-analysts.vercel.app/
 
----
+## ✨ Features
 
-## 🌟 Key Features
+- 📊 **Automated Data Analysis** — Analyze CSV and Excel datasets.
+- 🔍 **Data Quality Assessment** — Identify missing values, duplicates, and potential data quality issues.
+- 📈 **Interactive Visualizations** — Explore data through interactive charts and graphs.
+- 🧠 **AI-Powered Insights** — Generate data-driven observations and business recommendations.
+- 💬 **AI Chat Analyst** — Ask questions about your dataset using a conversational interface.
+- 📉 **Statistical Analysis** — Understand distributions, trends, and relationships in your data.
+- 🎯 **Business Intelligence** — Turn analytical findings into actionable insights.
+- 🔒 **Privacy-Focused Processing** — Designed to minimize unnecessary data retention.
 
-### 1. 📌 4-Layer Autonomous Analysis Pipeline
-* **Output 1 — Data Overview & Quality Assessment**: Automated structural hygiene checks, missing value ratios, duplicate detection, and health scoring (0–100).
-* **Output 2 — Business Analysis & Profiling**: Key statistical distributions, revenue drivers, churn factors, and business metric interpretations.
-* **Output 3 — Interactive Visualizations**: Dynamic high-fidelity Plotly charts synthesized automatically from numerical and categorical fields.
-* **Output 4 — Executive Strategy Roadmap**: Actionable executive recommendations, operational initiatives, and strategic growth tactics.
+## 🛠️ Tech Stack
 
-### 2. 💬 AI Chat Analyst (Dual Mode)
-* **Option 1: Code Q&A**: Generates and executes Python code against the active dataframe, returning exact calculation outputs.
-* **Option 2: Strategic Q&A**: Provides contextual business reasoning and executive commentary based on dataset characteristics.
+- **Frontend:** Next.js, React, TypeScript, Tailwind CSS
+- **Backend:** Python, FastAPI
+- **Data Analysis:** Pandas, NumPy
+- **Visualization:** Plotly
+- **Generative AI:** Groq API, Llama 3.1
+- **Deployment:** Vercel, Render
+- **State Management:** Zustand
 
-### 3. 🛡️ Stateless & Privacy-First Architecture
-* **Zero Persistence**: No database (no Firestore, SQL, or MongoDB) storing company datasets.
-* **In-Memory Streaming**: Files are processed in memory per session — zero files saved to disk.
-* **Zero History Retention**: Once the browser session closes, no stale historical data remains.
+## 🏗️ How It Works
 
----
+1. Upload a CSV or Excel dataset.
+2. Analyze data quality and statistical patterns.
+3. Generate insights and interactive visualizations.
+4. Ask questions about the dataset using the AI Chat Analyst.
+5. Explore findings and discover potential business opportunities.
 
-## 🏛️ System Architecture
+## 🎯 Project Objective
 
-```
-User (Browser)
-      │
-      ▼
-Next.js 14 Frontend (App Router, TypeScript, Tailwind CSS, Zustand, Plotly.js)
-      │  [Hosted on Vercel]
-      │
-      ▼ (REST API / CORS Enabled)
-FastAPI Backend (Python 3.12 Async, Pydantic v2, Pandas, Plotly)
-      │  [Hosted on Render]
-      │
-      ├──► In-Memory Session Engine (BytesIO / DataFrame)
-      └──► Groq Cloud (Llama 3.1 8B Instant) / OpenAI API
-```
+To make data analysis more accessible by combining Python-based analytics, interactive business intelligence, and generative AI in a unified platform.
 
----
+## 🌐 Try It Out
 
-## 📁 Repository Directory Structure
+**Live Application:** https://autonomous-ai-data-analysts.vercel.app/
 
-```text
-.
-├── backend/
-│   ├── app/
-│   │   ├── api/v1/             # Modular API endpoints (upload, analysis, summary, viz, chat)
-│   │   ├── core/               # App configuration, logging, settings
-│   │   ├── middleware/         # Open CORS middleware (Vercel-ready)
-│   │   ├── schemas/            # Strict Pydantic v2 validation models
-│   │   ├── services/           # LLM engine, chat, business analysis, visualization services
-│   │   ├── utils/              # Data processing & Plotly chart generators
-│   │   └── main.py             # FastAPI entrypoint
-│   ├── main.py                 # Direct re-export entrypoint for Render (uvicorn main:app)
-│   ├── Dockerfile              # Production container build
-│   └── requirements.txt        # Backend Python dependencies
-├── frontend/
-│   ├── src/
-│   │   ├── app/                # App Router pages (Dashboard, Upload, Analysis, Chat, Settings)
-│   │   ├── components/         # High-fidelity UI (Navbar, Sidebar, PlotlyChart, ChatInterface)
-│   │   ├── lib/                # Axios API client configured with dynamic base URL
-│   │   ├── store/              # Zustand state store
-│   │   └── types/              # TypeScript interfaces
-│   ├── package.json
-│   ├── tailwind.config.ts
-│   └── tsconfig.json
-├── docs/                       # Technical architecture & deployment masterclasses
-├── render.yaml                 # Render infrastructure-as-code Blueprint
-├── vercel.json                 # Vercel deployment configuration
-├── docker-compose.yml          # Containerized local execution
-├── .env.example                # Template environment variables
-└── README.md
-```
+## 👨‍💻 Author
+
+**Maher Dhami**
+
+GitHub: https://github.com/maherdhami
 
 ---
 
-## 🚀 Live Cloud Deployment
-
-### 1. Backend on Render
-
-1. Create a **New Web Service** connected to this repository.
-2. Configure settings:
-   * **Root Directory**: `backend` (or leave root with `uvicorn main:app`)
-   * **Build Command**: `pip install -r requirements.txt`
-   * **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-3. Environment Variables:
-   * `PYTHON_VERSION`: `3.12.0`
-   * `ENVIRONMENT`: `production`
-   * `GROQ_API_KEY`: `your_groq_api_key_here`
-
-### 2. Frontend on Vercel
-
-1. Import the repository in Vercel.
-2. Configure settings:
-   * **Framework Preset**: `Next.js`
-   * **Root Directory**: `frontend`
-3. Environment Variable:
-   * `NEXT_PUBLIC_API_BASE_URL`: `https://your-render-backend.onrender.com/api/v1`
-4. Click **Deploy**.
-
----
-
-## 💻 Local Development Setup
-
-### Prerequisites
-* **Python**: 3.12+
-* **Node.js**: 18+ or 20+
-* **Groq API Key**: [Get a free key at console.groq.com](https://console.groq.com)
-
-### 1. Backend Setup
-```bash
-cd backend
-python -m venv venv
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
-```
-FastAPI Swagger documentation will be available at `http://localhost:8000/docs`.
-
-### 2. Frontend Setup
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Open `http://localhost:3000` to launch the application.
-
-### 3. Docker Compose (Full Stack)
-```bash
-docker-compose up --build
-```
-
----
-
-## 🔑 Environment Variables
-
-| Variable | Scope | Description |
-|---|---|---|
-| `GROQ_API_KEY` | Backend | Groq API Key for Llama-3.1-8b-instant inference |
-| `OPENAI_API_KEY` | Backend | Optional fallback OpenAI key |
-| `ENVIRONMENT` | Backend | `production` or `development` |
-| `NEXT_PUBLIC_API_BASE_URL` | Frontend | URL of the backend API (e.g. `http://localhost:8000/api/v1`) |
-
----
-
-## 📄 License
-MIT License. Built for enterprise data intelligence and modern AI agent workflows.
+*Building at the intersection of Artificial Intelligence, Data Science, and Business Intelligence.*
